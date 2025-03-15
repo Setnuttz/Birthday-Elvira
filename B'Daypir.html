@@ -128,7 +128,6 @@
                 clickCount = 0;
             }
 
-            // Tampilkan tombol baru setelah Celebrate diklik
             document.getElementById("new-btn").classList.remove("hidden");
         }
 
@@ -157,8 +156,7 @@
             document.getElementById("long-text").style.display = "block";
             document.getElementById("long-text").style.opacity = "1";
         }
-
-        // Jalankan balon terus menerus sejak awal
+        
         setInterval(() => createBalloons(2), 2000);
     </script>
 </body>
