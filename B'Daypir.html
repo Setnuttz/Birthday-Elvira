@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Elvira! 🎂</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            font-weight: 600;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 1s ease-in-out;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .message, .ea-text, .long-text {
+            font-size: 1.5em;
+            opacity: 0;
+            margin-top: 20px;
+            transition: opacity 2s ease-in-out;
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .long-text {
+            max-width: 70%;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 15px;
+            border-radius: 15px;
+            display: none;
+            color: #fff;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.3em;
+            border: none;
+            background: linear-gradient(to right, #ffcc00, #ff6699);
+            color: white;
+            cursor: pointer;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ffd700, #ff3366);
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .icon {
+            font-size: 1.5em;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 55px;
+            height: 75px;
+            background: pink;
+            border-radius: 50%;
+            bottom: -100px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Happy Birthday, Elvira Ayu Thirany! 🎉</h1>
+    <p class="message" id="message">Wishing you all the happiness and success in life! 🎂💖</p>
+    <p class="ea-text" id="ea-text">EA EA</p> 
+    <button id="celebrate-btn" onclick="handleClick()">
+        <span class="icon">💖</span> Pencet ini EA <span class="icon">✨</span>
+    </button>
+    <button id="new-btn" class="hidden" onclick="showLongText()">🎁 Ini Juga EA!</button>
+    
+    <p class="long-text" id="long-text">
+        Happy Birthday, piraaaaa! 🎂✨<br><br>
+        On this special day, I want to wish you all the joy, success, and happiness that life has to offer. 
+        May your days be filled with laughter, your dreams come true, and your heart always be surrounded by love. 
+        You are an amazing person, and today is all about celebrating YOU! 💖🎊🎈<br><br>
+        Keep shining, and never stop chasing your dreams! ✨
+    </p>
+
+    <script>
+        let clickCount = 0;
+
+        function handleClick() {
+            clickCount++;
+
+            document.getElementById("title").style.opacity = "1";
+            document.getElementById("title").style.transform = "scale(1)";
+            document.getElementById("message").style.opacity = "1";
+            document.getElementById("ea-text").style.opacity = "1";
+
+            createBalloons(5);
+
+            if (clickCount >= 3) {
+                setTimeout(removeBalloons, 1000);
+                clickCount = 0;
+            }
+
+            // Tampilkan tombol baru setelah Celebrate diklik
+            document.getElementById("new-btn").classList.remove("hidden");
+        }
+
+        function createBalloons(count) {
+            for (let i = 0; i < count; i++) {
+                let balloon = document.createElement("div");
+                balloon.className = "balloon";
+                balloon.style.background = getRandomPastelColor();
+                balloon.style.left = Math.random() * window.innerWidth + "px";
+                balloon.style.animationDuration = (3 + Math.random() * 3) + "s";
+                document.body.appendChild(balloon);
+            }
+        }
+
+        function removeBalloons() {
+            let balloons = document.querySelectorAll(".balloon");
+            balloons.forEach(balloon => balloon.remove());
+        }
+
+        function getRandomPastelColor() {
+            let colors = ["#ffb6c1", "#ffdab9", "#add8e6", "#98fb98", "#dda0dd", "#fddde6"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function showLongText() {
+            document.getElementById("long-text").style.display = "block";
+            document.getElementById("long-text").style.opacity = "1";
+        }
+
+        // Jalankan balon terus menerus sejak awal
+        setInterval(() => createBalloons(2), 2000);
+    </script>
+</body>
+</html>
